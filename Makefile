@@ -6,15 +6,18 @@
 #    By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 22:01:52 by ismaelmehdi       #+#    #+#              #
-#    Updated: 2024/01/15 22:25:06 by ismaelmehdi      ###   ########.fr        #
+#    Updated: 2024/01/16 18:09:02 by ismaelmehdi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAMEC = client
 NAMES = server
 
-SRCS = ${wildcard *.c}
+SRCS = server.c
+SRCC = client.c
+
 OBJS = ${SRCS:.c=.o}
+OBJC = ${SRCC:.c=.o}
 
 CC = cc
 CFLAGS = -g -Wall -Wextra -Werror -Iincludes
@@ -23,20 +26,23 @@ RM = rm -f
 
 all: ${NAMEC} ${NAMES}
 
-$(NAMEC): ${OBJS}
+$(NAMEC): ${OBJC}
 		@${MAKE} -C ./libft
-		@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAMEC}
+		@${MAKE} -C ./printf
+		@${CC} ${CFLAGS} ${OBJC} ./libft/libft.a ./printf/libftprintf.a -o ${NAMEC}
 
 $(NAMES): ${OBJS}
 		@${MAKE} -C ./libft
-		@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a -o ${NAMES}
+		@${MAKE} -C ./printf
+		@${CC} ${CFLAGS} ${OBJS} ./libft/libft.a ./printf/libftprintf.a -o ${NAMES}
 
 clean:
 		@${MAKE} -C ./libft fclean
-		@${RM} ${OBJS}
+		@${MAKE} -C ./printf fclean
+		@${RM} ${OBJS} ${OBJC}
 
 fclean: clean
-		@${RM} ${OBJS} ${NAMEC} ${NAMES}
+		@${RM} ${OBJS} ${OBJC} ${NAMEC} ${NAMES}
 
 re: fclean all
 
