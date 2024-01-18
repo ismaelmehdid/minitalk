@@ -6,20 +6,13 @@
 /*   By: ismaelmehdid <ismaelmehdid@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 19:58:30 by ismaelmehdi       #+#    #+#             */
-/*   Updated: 2024/01/18 18:17:38 by ismaelmehdi      ###   ########.fr       */
+/*   Updated: 2024/01/18 18:51:27 by ismaelmehdi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	signal_handler(int signum)
-{
-	(void)signum;
-	write (1, "Message successfully received !\n", 33);
-	exit(EXIT_SUCCESS);
-}
-
-void	send_signals(int pid, char *str)
+static void	send_signals(int pid, char *str)
 {
 	int	i;
 	int	j;
@@ -46,7 +39,7 @@ void	send_signals(int pid, char *str)
 	}
 }
 
-int	is_pid(char *pid)
+static int	is_pid(char *pid)
 {
 	int	i;
 
@@ -74,8 +67,6 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	server_pid = ft_atoi(argv[1]);
-	signal(SIGUSR1, signal_handler);
 	send_signals(server_pid, argv[2]);
-	pause();
 	return (0);
 }
