@@ -27,9 +27,9 @@ $ make
 Start the server :
 
 ```shell
-./server //Start the server
+./server
 ```
 The server is showing its PID, so you need to use it to send a message to the server from the client like this :
 ```shell
-./client serverPID "Your message" //Start the client
+./client serverPID "Your message"
 ```
