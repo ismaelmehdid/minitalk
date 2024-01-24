@@ -14,7 +14,7 @@ The project is written in the C language and requires the **`gcc` compiler** and
 
 ### Instructions
 
-**1. Compiling the library**
+**1. Compiling minitalk**
 
 To compile, go to the project folder and run :
 
