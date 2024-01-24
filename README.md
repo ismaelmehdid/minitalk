@@ -29,7 +29,7 @@ Start the server :
 ```C
 ./server //Start the server
 ```
-The server is showing its PID, so you need to use it to send a message to the server from the client.
+The server is showing its PID, so you need to use it to send a message to the server from the client like this :
 ```C
 ./client serverPID "Your message" //Start the client
 ```
